@@ -5,7 +5,6 @@ var url         = require('url');
 var express     = require('express');
 var browserify  = require('connect-browserify');
 var ReactAsync  = require('react-async');
-var nodejsx     = require('node-jsx').install();
 var App         = require('./src/client');
 
 var development = process.env.NODE_ENV !== 'production';

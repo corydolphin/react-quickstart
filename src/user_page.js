@@ -1,6 +1,3 @@
-/**
- * @jsx React.DOM
- */
 'use strict';
 
 
@@ -14,7 +11,7 @@ var Page        = ReactRouter.Page;
 var NotFound    = ReactRouter.NotFound;
 var Link        = ReactRouter.Link;
 
-var UserPage = React.createClass({
+var UserPage = React.createClass({displayName: 'UserPage',
   mixins: [ReactAsync.Mixin],
 
   statics: {
@@ -45,13 +42,13 @@ var UserPage = React.createClass({
   render: function() {
     var otherUser = this.props.username === 'doe' ? 'ivan' : 'doe';
     return (
-      <div className="UserPage">
-        <h1>Hello, {this.state.name}!</h1>
-        <p>
-          Go to <Link href={"/users/" + otherUser}>/users/{otherUser}</Link>
-        </p>
-        <p><Link href="/">Logout</Link></p>
-      </div>
+      React.DOM.div({className: "UserPage"},
+        React.DOM.h1(null, "Hello, ", this.state.name, "!"),
+        React.DOM.p(null,
+          "Go to ", Link({href: "/users/" + otherUser}, "/users/", otherUser)
+        ),
+        React.DOM.p(null, Link({href: "/"}, "Logout"))
+      )
     );
   }
 });

@@ -1,6 +1,3 @@
-/**
- * @jsx React.DOM
- */
 'use strict';
 
 
@@ -17,30 +14,31 @@ var Link        = ReactRouter.Link;
 var MainPage    = require('./main_page')
 var UserPage    = require('./user_page')
 
-var NotFoundHandler = React.createClass({
+var NotFoundHandler = React.createClass({displayName: 'NotFoundHandler',
 
   render: function() {
     return (
-      <p>Page not found</p>
+      React.DOM.p(null, "Page not found")
     );
   }
 });
 
-var App = React.createClass({
+var App = React.createClass({displayName: 'App',
 
   render: function() {
+    console.log("runninsg!!!");
     return (
-      <html>
-        <head>
-          <link rel="stylesheet" href="/assets/style.css" />
-          <script src="/assets/bundle.js" />
-        </head>
-        <Pages className="App" path={this.props.path}>
-          <Page path="/" handler={MainPage} />
-          <Page path="/users/:username" handler={UserPage} />
-          <NotFound handler={NotFoundHandler} />
-        </Pages>
-      </html>
+      React.DOM.html(null,
+        React.DOM.head(null,
+          React.DOM.link({rel: "stylesheet", href: "/assets/style.css"}),
+          React.DOM.script({src: "/assets/bundle.js"})
+        ),
+        Pages({className: "App", path: this.props.path},
+          Page({path: "/", handler: MainPage}),
+          Page({path: "/users/:username", handler: UserPage}),
+          NotFound({handler: NotFoundHandler})
+        )
+      )
     );
   }
 });

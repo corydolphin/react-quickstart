@@ -1,6 +1,3 @@
-/**
- * @jsx React.DOM
- */
 'use strict';
 
 
@@ -14,14 +11,14 @@ var Page        = ReactRouter.Page;
 var NotFound    = ReactRouter.NotFound;
 var Link        = ReactRouter.Link;
 
-var MainPage = React.createClass({
+var MainPage = React.createClass({displayName: 'MainPage',
 
   render: function() {
     return (
-      <div className="MainPage">
-        <h1>Hello, anonymous!</h1>
-        <p><Link href="/users/doe">Login</Link></p>
-      </div>
+      React.DOM.div({className: "MainPage"},
+        React.DOM.h1(null, "Hello, anonymous!"),
+        React.DOM.p(null, Link({href: "/users/doe"}, "Login"))
+      )
     );
   }
 });
