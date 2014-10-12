@@ -1,13 +1,9 @@
-"use strict"
-React = require("react")
-ReactAsync = require("react-async")
-ReactRouter = require("react-router-component")
-superagent = require("superagent")
-Pages = ReactRouter.Pages
-Page = ReactRouter.Page
-NotFound = ReactRouter.NotFound
-Link = ReactRouter.Link
-UserPage = React.createClass(
+React                          = require "react"
+ReactAsync                     = require "react-async"
+superagent                     = require "superagent"
+{Pages, Page, NotFound, Link } = require "react-router-component"
+
+UserPage = React.createClass
   displayName: "UserPage"
   mixins: [ReactAsync.Mixin]
   statics:
@@ -40,5 +36,5 @@ UserPage = React.createClass(
     , "/users/", otherUser)), React.DOM.p(null, Link(
       href: "/"
     , "Logout"))
-)
+
 module.exports = UserPage

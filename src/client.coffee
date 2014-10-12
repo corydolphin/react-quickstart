@@ -1,20 +1,17 @@
-"use strict"
-React = require("react")
-ReactAsync = require("react-async")
-ReactRouter = require("react-router-component")
-superagent = require("superagent")
-Pages = ReactRouter.Pages
-Page = ReactRouter.Page
-NotFound = ReactRouter.NotFound
-Link = ReactRouter.Link
-MainPage = require("./main_page")
-UserPage = require("./user_page")
-NotFoundHandler = React.createClass(
+React                          = require "react"
+ReactAsync                     = require "react-async"
+superagent                     = require "superagent"
+{Pages, Page, NotFound, Link } = require "react-router-component"
+MainPage                       = require "./main_page"
+UserPage                       = require "./user_page"
+
+
+NotFoundHandler = React.createClass
   displayName: "NotFoundHandler"
   render: ->
     React.DOM.p null, "Page not found"
-)
-App = React.createClass(
+
+App = React.createClass
   displayName: "App"
   render: ->
     console.log "runninsg!!!"
@@ -31,9 +28,8 @@ App = React.createClass(
       path: "/users/:username"
       handler: UserPage
     ), NotFound(handler: NotFoundHandler))
-)
+
 module.exports = App
 if typeof window isnt "undefined"
   window.onload = ->
     React.renderComponent App(), document
-    return

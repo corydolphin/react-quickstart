@@ -16,7 +16,7 @@ gulp.task "bundle", ->
 gulp.task "watch", ->
   nodemon(
     script: "server.coffee"
-    ext: "js"
+    ext: "coffee"
     ignore: [
       "assets/bundle.js"
       "**/node_modules/**/*"
