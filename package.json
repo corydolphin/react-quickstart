@@ -35,6 +35,8 @@
     "coffeeify": "^0.7.0",
     "connect-browserify": "~2.0.1",
     "envify": "~1.2.0",
+    "gulp-browserify": "^0.5.0",
+    "gulp-concat": "^2.4.1",
     "reactify": "~0.13.1",
     "supervisor": "~0.6.0",
     "uglify-js": "~2.4.13"
