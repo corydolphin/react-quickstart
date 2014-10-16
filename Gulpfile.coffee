@@ -7,7 +7,7 @@ uglify     = require("gulp-uglify")
 rename     = require("gulp-rename")
 
 gulp.task "bundle", ->
-  gulp.src("src/client.coffee", read: false)
+  gulp.src("src/app.coffee", read: false)
     .pipe(browserify({transform: ["coffeeify"], extensions: [".coffee"]}))
     .pipe(rename("bundle.js"))
     .pipe gulp.dest("assets/")

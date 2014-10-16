@@ -3,7 +3,7 @@ url         = require("url")
 express     = require("express")
 browserify  = require("connect-browserify")
 ReactAsync  = require("react-async")
-App         = require("./src/client.coffee")
+App         = require("./src/app.coffee")
 development = process.env.NODE_ENV isnt "production"
 
 renderApp = (req, res, next) ->

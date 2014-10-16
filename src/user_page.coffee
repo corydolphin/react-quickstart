@@ -29,12 +29,14 @@ UserPage = React.createClass
 
   render: ->
     otherUser = (if @props.username is "doe" then "ivan" else "doe")
-    React.DOM.div
-      className: "UserPage"
-    , React.DOM.h1(null, "Hello, ", @state.name, "!"), React.DOM.p(null, "Go to ", Link(
-      href: "/users/" + otherUser
-    , "/users/", otherUser)), React.DOM.p(null, Link(
-      href: "/"
-    , "Logout"))
+    React.DOM.div { className: "UserPage" },
+      React.DOM.h1 null, "Hello, ", @state.name, "!"
+
+      React.DOM.p null,
+        "Go to ",
+        Link { href: "/users/" + otherUser }, "/users/" + otherUser,
+
+      React.DOM.p null,
+        Link { href: "/"}, "Logout"
 
 module.exports = UserPage
