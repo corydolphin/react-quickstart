@@ -4,16 +4,6 @@
   "description": "React project",
   "main": "./server.js",
   "browser": "./client.js",
-  "browserify": {
-    "transform": [
-      [
-        "reactify",
-        {
-          "harmony": true
-        }
-      ]
-    ]
-  },
   "dependencies": {
     "browserify": "^6.1.0",
     "coffee-script": "^1.8.0",
@@ -31,13 +21,10 @@
     "superagent": "^0.20.0",
     "uglify-js": "^2.4.15",
     "vinyl-source-stream": "*",
-    "watchify": "*"
-  },
-  "devDependencies": {
+    "watchify": "*",
     "browserify": "*",
     "coffeeify": "^0.7.0",
     "envify": "~1.2.0",
-    "gulp-concat": "^2.4.1",
     "reactify": "~0.13.1",
     "supervisor": "~0.6.0"
   },
