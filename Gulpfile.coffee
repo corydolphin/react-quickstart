@@ -4,10 +4,11 @@ nodemon    = require 'gulp-nodemon'
 browserify = require 'browserify'
 source     = require 'vinyl-source-stream'
 watchify   = require 'watchify'
-
+streamify  = require 'gulp-streamify'
+uglify     = require 'gulp-uglify'
 
 getBundle = ->
-  browserify({ cache: {}, packageCache: {}, fullPaths: true})
+  browserify({ debug:true, cache: {}, packageCache: {}, fullPaths: true})
   .add('./src/app.coffee')
   .transform( 'coffeeify')
 
@@ -26,6 +27,13 @@ gulp.task "watchify", ->
   bundler.on 'time', timer
 
   updater()
+
+gulp.task "production", ->
+  getBundle()
+  .bundle()
+  .pipe source("bundle.js")
+  .pipe streamify(uglify())
+  .pipe gulp.dest('assets')
 
 gulp.task "watch", ->
   nodemon(
