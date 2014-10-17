@@ -1,17 +1,31 @@
-gulp       = require("gulp")
-gutil      = require("gulp-util")
-browserify = require("gulp-browserify")
-concat     = require("gulp-concat")
-nodemon    = require("gulp-nodemon")
-uglify     = require("gulp-uglify")
-rename     = require("gulp-rename")
+gulp       = require 'gulp'
+gutil      = require 'gulp-util'
+nodemon    = require 'gulp-nodemon'
+browserify = require 'browserify'
+source     = require 'vinyl-source-stream'
+watchify   = require 'watchify'
 
-gulp.task "bundle", ->
-  gulp.src("src/app.coffee", read: false)
-    .pipe(browserify({transform: ["coffeeify"], extensions: [".coffee"]}))
-    .pipe(rename("bundle.js"))
-    .pipe gulp.dest("assets/")
 
+getBundle = ->
+  browserify({ cache: {}, packageCache: {}, fullPaths: true})
+  .add('./src/app.coffee')
+  .transform( 'coffeeify')
+
+gulp.task "watchify", ->
+  bundler = watchify getBundle()
+
+  updater = (b) ->
+    bundler.bundle()
+    .pipe source("bundle.js")
+    .pipe gulp.dest("./assets")
+
+  timer = (time) ->
+    gutil.log 'Bundle update. Elapsed time:', gutil.colors.cyan(time), 'ms'
+
+  bundler.on 'update', updater
+  bundler.on 'time', timer
+
+  updater()
 
 gulp.task "watch", ->
   nodemon(
@@ -21,7 +35,6 @@ gulp.task "watch", ->
       "assets/bundle.js"
       "**/node_modules/**/*"
     ]
-  ).on("change", ["bundle"]).on "restart", ->
-    console.log "restarted!"
+  )
 
-gulp.task 'default', ['bundle', 'watch']
+gulp.task 'default', ['watch', 'watchify']

@@ -1,5 +1,5 @@
 React                          = require "react"
-Router                         = require "./router"
+Router                         = require "./router.coffee"
 
 App = React.createClass
   displayName: "App"

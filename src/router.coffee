@@ -2,8 +2,8 @@ React                          = require "react"
 ReactAsync                     = require "react-async"
 superagent                     = require "superagent"
 {Pages, Page, NotFound, Link } = require "react-router-component"
-MainPage                       = require "./main_page"
-UserPage                       = require "./user_page"
+MainPage                       = require "./main_page.coffee"
+UserPage                       = require "./user_page.coffee"
 
 
 NotFoundHandler = React.createClass
